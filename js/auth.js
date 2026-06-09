@@ -6,11 +6,8 @@ const passwordInput = document.getElementById('password')
 const btnRegister = document.getElementById('btn-register')
 const messageDiv = document.getElementById('message')
 
-// ==========================================
-// 1. БҮРТГҮҮЛЭХ ЛОГИК (Sign Up)
-// ==========================================
 btnRegister.addEventListener('click', async (e) => {
-    e.preventDefault() // Хуудас дахин ачаалагдахаас сэргийлнэ
+    e.preventDefault() 
     
     console.log("Бүртгүүлэх товч дарагдлаа")
     const email = emailInput.value.trim()
@@ -21,7 +18,7 @@ btnRegister.addEventListener('click', async (e) => {
         return
     }
 
-    if (password.length < 6) { // length гэж засав
+    if (password.length < 6) { 
         showMessage("Нууц үг доод тал нь 6 тэмдэгт байх ёстой!", "text-danger")
         return
     }
@@ -40,10 +37,7 @@ btnRegister.addEventListener('click', async (e) => {
     }
 })
 
-// ==========================================
-// 2. НЭВТРЭХ ЛОГИК (Sign In)
-// ==========================================
-authForm.addEventListener('submit', async (e) => { // auth-ийг authForm болгож засав
+authForm.addEventListener('submit', async (e) => { 
     e.preventDefault()
 
     console.log("Нэвтрэх хүсэлт илгээгдлээ")
@@ -63,18 +57,14 @@ authForm.addEventListener('submit', async (e) => { // auth-ийг authForm бо�
     if (error) {
         showMessage(`Нэвтрэх алдаа: ${error.message}`, "text-danger")
     } else {
-        showMessage("Амжилттай нэвтэрлээ. Түр хүлээнэ үү...", "text-success")
-        
-        // Хэрэглэгчид амжилттай болсон зурвасыг харуулахын тулд 1.5 секунд хүлээлгээд шилжүүлнэ
+        showMessage("Амжилттай нэвтэрлээ. Түр хүлээнэ үү!", "text-success")
+
         setTimeout(() => {
             window.location.href = 'dashboard.html'
         }, 1500)
     }
 })
 
-// ==========================================
-// ЗУРВАС ХАРУУЛАХ ФУНКЦ
-// ==========================================
 function showMessage(text, bootstrapColorClass) {
     messageDiv.innerText = text
     messageDiv.className = `text-center small mt-3 fw-medium ${bootstrapColorClass}`
