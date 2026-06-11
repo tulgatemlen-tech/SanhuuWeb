@@ -17,7 +17,9 @@
                 <i class="fa-solid fa-sack-dollar text-warning"></i> Санхүүгийн самбар
             </a>
             <div class="d-flex align-items-center gap-3">
-                 <button class="btn btn-sm btn-outline-primary fw-bold text-white border-primary-subtle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBudget">Төсөв тогтоох</button>
+                <div id="user-badges-container" class="d-inline-flex gap-1 me-1 align-items-center"></div>
+
+                <button class="btn btn-sm btn-outline-primary fw-bold text-white border-primary-subtle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBudget">Төсөв тогтоох</button>
                 <span class="text-light small" id="user-email">...</span>
                 <button class="btn btn-outline-light btn-sm" id="btn-logout">
                     <i class="bi bi-box-arrow-right"></i> Гарах
@@ -32,7 +34,7 @@
                 <div class="card border-0 shadow-sm bg-primary text-white p-3">
                     <div>
                         <h6 class="text-white-50 text-uppercase small">Үлдэгдэл</h6>
-                        <h3 class="fw-bold mb-0" id="total-balance">0$</h3>
+                        <h3 class="fw-bold mb-0" id="total-balance">0 ₮</h3>
                     </div>
                 </div>
             </div>
@@ -41,7 +43,7 @@
                 <div class="card border-0 shadow-sm bg-success text-white p-3">
                     <div>
                         <h6 class="text-white-50 text-uppercase small">Нийт орлого</h6>
-                        <h3 class="fw-bold mb-0" id="total-income">0$</h3>
+                        <h3 class="fw-bold mb-0" id="total-income">0 ₮</h3>
                     </div>
                 </div>
             </div>
@@ -50,7 +52,7 @@
                 <div class="card border-0 shadow-sm bg-danger text-white p-3">
                     <div>
                         <h6 class="text-white-50 text-uppercase small">Нийт зарлага</h6>
-                        <h3 class="fw-bold mb-0" id="total-expense">0$</h3>
+                        <h3 class="fw-bold mb-0" id="total-expense">0 ₮</h3>
                     </div>
                 </div>
             </div>
@@ -117,7 +119,7 @@
                                 </tr>
                             </thead>
                             <tbody id="transaction-list">
-                                </tbody>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -134,6 +136,14 @@
         </div>
 
         <div class="offcanvas-body p-4">
+            <div class="mb-4">
+                <h6 class="fw-bold text-dark mb-3"><i class="fa-solid fa-trophy text-warning me-1"></i> Бадге цуглуулга (Болзол)</h6>
+                <div id="all-badges-status-list" class="d-flex flex-column gap-2">
+                    </div>
+            </div>
+
+            <hr class="my-4 text-secondary">
+
             <p class="text-secondary small mb-4">
                 Та тухайн сард тодорхой ангилалд зарцуулах мөнгөний дээд хязгаарыг тогтоосноор санхүүгээ хэтрэхээс хамгаалж чадна.
             </p>
