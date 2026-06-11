@@ -65,7 +65,7 @@ transactionForm.addEventListener('submit', async (e) => {
             // Энэ сард, энэ ангилалд урьд нь хийгдсэн бүх зарлагуудын нийлбэрийг Supabase-с татах
             const { data: pastExpenses } = await supabase
                 .from('transactions')
-                .select('amount')
+                .select('amount, date')
                 .eq('user_id', user.id)
                 .eq('type', 'expense')
                 .eq('category', category);
@@ -338,12 +338,24 @@ async function fetchBudgets() {
         htmlContent += `
             <div class="card p-2 mb-2 bg-light border-0 shadow-sm">
                 <div class="d-flex justify-content-between align-items-center">
+
                     <div>
                         <span class="fw-bold small text-dark">${b.category}</span>
                         <span class="text-muted mx-1">•</span>
                         <span class="small text-secondary">${b.month_year}</span>
                     </div>
-                    <span class="fw-bold text-primary small">${b.limit_amount.toLocaleString()} ₮</span>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="fw-bold text-primary small">
+                            ${b.limit_amount.toLocaleString()} ₮
+                        </span>
+                        <button
+                            class="btn btn-sm btn-danger"
+                            onclick="deleteBudget('${b.id}')">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+
                 </div>
             </div>
         `;
@@ -351,3 +363,26 @@ async function fetchBudgets() {
 
     budgetsContainer.innerHTML = htmlContent;
 }
+
+window.deleteBudget = async function(id) {
+
+    const confirmDelete =
+        confirm("Энэ төсвийг устгах уу?");
+
+    if (!confirmDelete) return;
+
+    const { error } = await supabase
+        .from('budgets')
+        .delete()
+        .eq('id', id);
+
+    if (error) {
+        alert("Устгах үед алдаа гарлаа");
+        console.error(error);
+        return;
+    }
+
+    alert("Төсөв устгагдлаа");
+    fetchBudgets();
+}
+
